@@ -37,7 +37,7 @@
   </tr>
   <tr>
     
-    <td><li><a href="bus.php">buses</a></li></td>
+    <td><li><a href="addbus.php">buses</a></li></td>
   </tr>
   <tr>
     <td><li><a href="route.php">routes</a></li></td>
@@ -58,6 +58,7 @@
 
 $firstname=@$_POST['firstname'];
 $lastname=@$_POST['lastname'];
+$location=@$_POST['location'];
 $email=@$_POST['email'];
 $agentID=@$_POST['agentID'];
 #the @ disable PHP error reporting
@@ -65,10 +66,11 @@ include 'conn.php';
 if(!empty($agentID)){
 $firstname=addslashes($firstname);
 $lastname=addslashes($lastname);
+$location=addslashes($location);
 $email=addslashes($email);
 $agentID=addslashes($agentID);
 
-$sql="INSERT INTO agent SET firstname='$firstname',lastName='$lastname',
+$sql="INSERT INTO agent SET firstname='$firstname',lastName='$lastname',location='$location',
 email='$email',agentID='$agentID'";
 $query=mysql_query($sql)or die("Cannot query the database.<br>".mysql_error());
 echo "agent added!!";
@@ -86,6 +88,9 @@ FirstName:<input type="text" name="firstname">
 <br>
 <br>
 LastName:<input type="text" name="lastname">
+<br>
+<br>
+Location:<input type="text" name="location">
 <br>
 <br>
 Email:<input type="text" name="email">
