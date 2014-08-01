@@ -37,7 +37,7 @@
   </tr>
   <tr>
     
-    <td><li><a href="addbus.php">buses</a></li></td>
+    <td><li><a href="bus.php">buses</a></li></td>
   </tr>
   <tr>
     <td><li><a href="route.php">routes</a></li></td>
@@ -55,45 +55,40 @@
 		   <div id="inbody">
 		
    <?php
+   
+$busID=@$_POST['busID'];
+$model=@$_POST['model'];
+$seats=@$_POST['seats'];
+$fare=@$_POST['fare'];
 
-$firstname=@$_POST['firstname'];
-$lastname=@$_POST['lastname'];
-$location=@$_POST['location'];
-$email=@$_POST['email'];
-$agentID=@$_POST['agentID'];
 #the @ disable PHP error reporting
 include 'conn.php';
-if(!empty($agentID)){
-$firstname=addslashes($firstname);
-$lastname=addslashes($lastname);
-$location=addslashes($location);
-$email=addslashes($email);
-$agentID=addslashes($agentID);
+if(!empty($busID)){
+$seats=addslashes($seats);
+$model=addslashes($model);
+$fare=addslashes($fare);
+$busID=addslashes($busID);
 
-$sql="INSERT INTO agent SET firstname='$firstname',lastName='$lastname',location='$location',
-email='$email',agentID='$agentID'";
+$sql="INSERT INTO bus SET busID='$busID', seats='$seats', model='$model', fare='$fare'";
 $query=mysql_query($sql)or die("Cannot query the database.<br>".mysql_error());
-echo "agent added!!";
+echo "bus added!!";
 }else{
 ?>
-<title>Add agent</title>
+<title>Add bus</title>
 
 
-<form name="agentID" method="post" action="addagent.php">
+<form name="busID" method="post" action="addbus.php">
 <br>
-agent ID:<input type="text" name="agentID">
-<br>
-<br>
-FirstName:<input type="text" name="firstname">
+busID:<input type="text" name="busID">
 <br>
 <br>
-LastName:<input type="text" name="lastname">
+seats:<input type="tinyint" name="seats">
 <br>
 <br>
-Location:<input type="text" name="location">
+model:<input type="text" name="model">
 <br>
 <br>
-Email:<input type="text" name="email">
+fare:<input type="int" name="fare">
 <br>
 <br>
 <input type="Submit" name="Submit" value="Submit">
