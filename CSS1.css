@@ -1,6 +1,7 @@
 *{
 margin:0px;
 padding:0px;
+
 }
 
 header,navbars,leftnav,rightnav,body,footer{
@@ -25,17 +26,17 @@ font:bold 20px Cambria;
 }
 
 #WebBody{
-border:2px solid aqua;
+border:2px solid #FFFFFF ;
 width:1300px;
 margin:50px auto;
 padding:5px;
 height:600px;
-background-color:teal ;
+background-color:#B8B8B8  ;
 }
 #header{
 width:1300px;
 height:120px;
-background-color:seagreen;
+background-color:#E0E0E0 ;
 border-bottom:2px solid;
 font:bold 18px Cambria;
 }
@@ -45,7 +46,7 @@ float:left;
 width:260px;
 height:480px;
 border-right:1px;
-background-color:lightseagreen;
+background-color:#F8F8F8 ;
 font:bold 14px normal;
 }
 
