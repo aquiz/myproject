@@ -37,7 +37,7 @@
   </tr>
   <tr>
     
-    <td><li><a href="bus.php">buses</a></li></td>
+    <td><li><a href="addbus.php">buses</a></li></td>
   </tr>
   <tr>
     <td><li><a href="route.php">routes</a></li></td>
