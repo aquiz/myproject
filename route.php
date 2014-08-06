@@ -56,24 +56,24 @@
 		
    <?php
 
-$routeID=@$_POST['routeID'];
+//$routeID=@$_POST['routeID'];
 $distance=@$_POST['distance'];
 $fare=@$_POST['fare'];
 $source=@$_POST['source'];
 $destination=@$_POST['destination'];
-$via_road=@$_POST['via_road'];
+$via=@$_POST['via'];
 #the @ disable PHP error reporting
 include 'conn.php';
-if(!empty($routeID)){
-$routeID=addslashes($routeID);
+if(!empty($source)){
+//$routeID=addslashes($routeID);
 $distance=addslashes($distance);
 $fare=addslashes($fare);
 $source=addslashes($source);
 $destination=addslashes($destination);
-$via_road=addslashes($via_road);
+$via=addslashes($via);
 
-$sql="INSERT INTO route SET routeID='$via_road',distance='$distance',fare='$fare',
-source='$source',destination='$destination',via_road='$via_road'";
+$sql="INSERT INTO route SET routeID='$routeID', distance='$distance', fare='$fare',
+source='$source',destination='$destination',via='$via'";
 $query=mysql_query($sql)or die("Cannot query the database.<br>".mysql_error());
 echo "route added!!";
 }else{
@@ -83,26 +83,24 @@ echo "route added!!";
 
 <form name="routeID" method="post" action="route.php">
 <br>
-RouteID:<input type="text" name="routeID">
+source:<input type="text" name="source">
 <br>
 <br>
-DISTANCE:<input type="text" name="distance">
+destination:<input type="text" name="destination">
 <br>
 <br>
-FARE:<input type="text" name="fare">
+distance(km):<input type="float" name="distance">
 <br>
 <br>
-SOURCE:<input type="text" name="source">
+via(road):<input type="text" name="via">
 <br>
 <br>
-DESTINATION:<input type="text" name="destination">
+fare:<input type="text" name="fare">
 <br>
-<br>
-VIA_ROAD:<input type="text" name="via_road">
-<br>
-
 <br>
 <input type="Submit" name="Submit" value="Submit">
+
+
 </form>
 <?php
 }

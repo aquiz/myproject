@@ -47,7 +47,7 @@
     <td><li><a href="printreport.php">Print report</a></li></td><br>
 </tr>
 <tr>
-    <td><li><a href="logout.php">logout</a></li></td>
+    <td><li><a href="logout.php">login</a></li></td>
 </tr>
 </table>        
 		   </div>
@@ -63,13 +63,13 @@ $fare=@$_POST['fare'];
 
 #the @ disable PHP error reporting
 include 'conn.php';
-if(!empty($busID)){
+if(!empty($seats)){
 $seats=addslashes($seats);
 $model=addslashes($model);
 $fare=addslashes($fare);
 $busID=addslashes($busID);
 
-$sql="INSERT INTO bus SET busID='$busID', seats='$seats', model='$model', fare='$fare'";
+$sql="INSERT INTO bus SET seats='$seats', model='$model', fare='$fare'";
 $query=mysql_query($sql)or die("Cannot query the database.<br>".mysql_error());
 echo "bus added!!";
 }else{
@@ -79,13 +79,10 @@ echo "bus added!!";
 
 <form name="busID" method="post" action="addbus.php">
 <br>
-busID:<input type="text" name="busID">
+model:<input type="text" name="model">
 <br>
 <br>
 seats:<input type="tinyint" name="seats">
-<br>
-<br>
-model:<input type="text" name="model">
 <br>
 <br>
 fare:<input type="int" name="fare">

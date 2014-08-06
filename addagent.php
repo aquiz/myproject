@@ -63,7 +63,7 @@ $email=@$_POST['email'];
 $agentID=@$_POST['agentID'];
 #the @ disable PHP error reporting
 include 'conn.php';
-if(!empty($agentID)){
+if(!empty($firstname)){
 $firstname=addslashes($firstname);
 $lastname=addslashes($lastname);
 $location=addslashes($location);
@@ -80,9 +80,6 @@ echo "agent added!!";
 
 
 <form name="agentID" method="post" action="addagent.php">
-<br>
-agent ID:<input type="text" name="agentID">
-<br>
 <br>
 FirstName:<input type="text" name="firstname">
 <br>
