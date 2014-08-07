@@ -56,44 +56,51 @@
 		
    <?php
 
-$firstname=@$_POST['firstname'];
-$lastname=@$_POST['lastname'];
-$location=@$_POST['location'];
-$email=@$_POST['email'];
-$agentID=@$_POST['agentID'];
+$distance=@$_POST['distance'];
+$fare=@$_POST['fare'];
+$source=@$_POST['source'];
+$destination=@$_POST['destination'];
+$via=@$_POST['via'];
 #the @ disable PHP error reporting
 include 'conn.php';
-if(!empty($firstname)){
-$firstname=addslashes($firstname);
-$lastname=addslashes($lastname);
-$location=addslashes($location);
-$email=addslashes($email);
-$agentID=addslashes($agentID);
+if(!empty($source)){
 
-$sql="INSERT INTO agent SET firstname='$firstname',lastName='$lastname',location='$location',
-email='$email',agentID='$agentID'";
+$distance=addslashes($distance);
+$fare=addslashes($fare);
+$source=addslashes($source);
+$destination=addslashes($destination);
+$via=addslashes($via);
+
+$sql="INSERT INTO route SET routeID='$routeID', distance='$distance', fare='$fare',
+source='$source',destination='$destination',via='$via'";
 $query=mysql_query($sql)or die("Cannot query the database.<br>".mysql_error());
-echo "agent added!!";
-}else{
+echo "route added!!";
+}
+else{
 ?>
-<title>Add agent</title>
+<title>Add route</title>
 
 
-<form name="agentID" method="post" action="addagent.php">
+<form name="routeID" method="post" action="route.php">
 <br>
-FirstName:<input type="text" name="firstname">
-<br>
-<br>
-LastName:<input type="text" name="lastname">
+source:<input type="text" name="source">
 <br>
 <br>
-Location:<input type="text" name="location">
+destination:<input type="text" name="destination">
 <br>
 <br>
-Email:<input type="text" name="email">
+distance(km):<input type="float" name="distance">
+<br>
+<br>
+via(road):<input type="text" name="via">
+<br>
+<br>
+fare:<input type="text" name="fare">
 <br>
 <br>
 <input type="Submit" name="Submit" value="Submit">
+
+
 </form>
 <?php
 }

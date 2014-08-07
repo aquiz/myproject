@@ -197,7 +197,7 @@ else
 
 <tr><td>Password:</td><td>
 
-<input type="password" name="pass" maxlength="50">
+<input type="password" name="password" maxlength="50">
 
 </td></tr>
 
