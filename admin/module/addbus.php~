@@ -1,0 +1,36 @@
+<header>
+<link rel="stylesheet" href="../css/bootstrap.css"/>
+</header>
+<fieldset><legend>Add bus</legend>
+
+<form name="busID" method="post" action="">
+<table>
+<tr><td>model:</td><td><input type="text" name="model"></td></tr>
+
+<tr><td>seats:</td><td><input type="text" name="seats"></td></tr>
+
+<tr><td></td><td><input type="submit" name="submit" value="Submit"><input type="submit" name="show" value="View"><input type="reset" name="reset" value="Reset"></td></tr></table>
+
+
+</form>
+</fieldset>
+<?php
+require_once('../conn/conn.php');
+
+if(isset($_POST['submit'])){
+$busID = $_POST['busID'];
+$model = $_POST['model'];
+$seats = $_POST['seats'];
+if( $model=='' || $seats==''){
+echo "ERROR! Fill all the blanks";
+  }else {
+mysql_query("insert into bus set model='".$model."', seats='".$seats."' ") or die(mysql_error());
+if(mysql_affected_row()){
+echo "Successfully added!..";
+}
+  }
+
+}elseif(isset($_POST['show'])){
+	header("location: viewBus.php");
+}
+?>
