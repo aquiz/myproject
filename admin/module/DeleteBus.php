@@ -1,7 +1,11 @@
 <?php
-$busID=$_GET['busID'];
-include '../conn/conn.php';
-$sql="DELETE FROM bus WHERE busID='$busID'";
-$query=mysql_query($sql) or die("cannot delete record.<br>".mysql_error());
-echo "Record Deleted!";
+include "../conn/conn.php"; 
+  
+$del= $_GET['busID'];
+//query to delete
+if((mysql_query("DELETE FROM bus where busID = '$del'"))==true) {
+header("location:buslist.php");
+}
+
+
 ?>

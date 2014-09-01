@@ -1,207 +1,68 @@
 <!DOCTYPE html>
 
-<header>
-<title>tmsHome</title>
-<link rel="stylesheet" href="CSS1.css"/>
-</header>
-
+<html >
+<head>
+<title>TMS_Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/arial.js"></script>
+<script type="text/javascript" src="js/cuf_run.js"></script>
+<!-- CuFon ends -->
+</head>
 <body>
-<body bgcolor="grey">
-
-     <div id="WebBody">
-	       <div id="header">
-		   <center><h1>TRANSPORT SYSTEM</h1></center>
-		   <center><h2>Welcome to the Transport Management System(TMS) site.</h2></center>
-		         <div id="headernav">
-				      <nav>
-					     <ul>
-						     <li><a href = >Link One  </a></li>
-						     <li><a href = >Link two  </a></li>
-							 
-						 </ul>
-					  
-					  </nav>
-				 
-				 </div>
-		         
-		   </div>
-		   
-		   <div id="leftnavs">
-	<table>
-  <tr>
-    <td><li><a href="tmsHOME.html">home</a></li></td>
-    </tr>
-
-    
-    <td><li><a href="addagent.php">add agent</a></li></td>
-  </tr>
-  <tr>
-    
-    <td><li><a href="addbus.php">buses</a></li></td>
-  </tr>
-  <tr>
-    <td><li><a href="route.php">routes</a></li></td>
-</tr>
-
-<tr>
-    <td><li><a href="printreport.php">Print report</a></li></td><br>
-</tr>
-<tr>
-    <td><li><a href="logout.php">login</a></li></td>
-</tr>
-</table>        
-		   </div>
-		   
-		   <div id="inbody">
-			   
-<?php
-
-//Connects to your Database
- mysql_connect("localhost", "root", "theloneranger") or die(mysql_error());
- mysql_select_db("transport_system") or die(mysql_error());
-
-
- //Checks if there is a login cookie
- if(isset($_COOKIE['ID_my_site']))
-
-
- //if there is, it logs you in and directes you to the members page
- {
-  $username = $_COOKIE['ID_my_site'];
-
-  $pass = $_COOKIE['Key_my_site'];
-
-  $check = mysql_query("SELECT * FROM users WHERE username = '$username'")or die(mysql_error());
-
-  while($info = mysql_fetch_array( $check ))
-
-  {
-
-  if ($pass != $info['password'])
-
-  {
-
-  }
-
-  else
-
-  {
-
-  header("Location: members.php");
-
-
-
-  }
-
-  }
-
- }
-
-
- //if the login form is submitted
-
- if (isset($_POST['submit'])) { // if form has been submitted
-
-
-
- // makes sure they filled it in
-
-  if(!$_POST['username'] | !$_POST['pass']) {
-
-  die('You did not fill in a required field.');
-
-  }
-
-  // checks it against the database
-
-
-
-  if (!get_magic_quotes_gpc()) {
-
-  $_POST['email'] = addslashes($_POST['email']);
-
-  }
-
-  $check = mysql_query("SELECT * FROM users WHERE username = '".$_POST['username']."'")or die(mysql_error());
-
-
-
- //Gives error if user dosen't exist
-
- $check2 = mysql_num_rows($check);
-
- if ($check2 == 0) {
-
-  die('That user does not exist in our database. <a href=add.php>Click Here to Register</a>');
-
-  }
-
- while($info = mysql_fetch_array( $check ))
-
- {
-
- $_POST['pass'] = stripslashes($_POST['pass']);
-
-  $info['password'] = stripslashes($info['password']);
-
-  $_POST['pass'] = md5($_POST['pass']);
-
-
-
- //gives error if the password is wrong
-
-  if ($_POST['pass'] != $info['password']) {
-
-  die('Incorrect password, please try again.');
-
-  }
- else
-
- {
-
- 
- // if login is ok then we add a cookie
-
-$_POST['username'] = stripslashes($_POST['username']);
-$hour = time() + 3600;
-setcookie(ID_my_site, $_POST['username'], $hour);
-setcookie(Key_my_site, $_POST['pass'], $hour);	
- 
-//then redirect them to the members area
-header("Location: members.php");
- }
-}
-}
-
-else
-
-{	
-
- 
-
- // if they are not logged in
-
- ?>
-
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<div class="main">
+
+  <div class="header">
+    <div class="header_resize">
+      <div class="logo"><h1><a href="index.php"><center> TRANSPORT SYSTEM </center> </a></h1></div>
+      <div class="menu_nav">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">Support</a></li>
+          <li><a href="">About Us</a></li>
+          
+          <li><a href="">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2>Welcome to the Transport Management System.</h2>
+          <p>The government of the United Republic of Tanzania as stated in its act. 123 of 2009, it states that “transport and communication is an integral part in every citizen life, 
+		  and it is the right of every citizen to to have a reliable transport and communication.” 
+		  To implement the act, the government has decided to create a system to manage its transport and communication sector. 
+		  This will help in managing revenue and provide reliability to users.</p>
+          <p>Thus the following system provides the abilities or functionalities to manage the transport sector which the government has decided to invest hugely. 
+		  This system provides the functionalities of editing, creating and deleting attributes. The attributes include buses, agents and routes. </p>
+          <p><strong>Futhermore</strong></p>
+          <p>One can also manage his or her account by changing the password and username to ensure security of one's account.</p>
+          
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star">Login</h2>
+          <form action="admin/conn/login.php" method="post" form class="form-horizontal sidebar" role="form">
 
 <table border="0">
 
-<tr><td colspan=2><h1>Login</h1></td></tr>
+<tr><td>
+   
+Username:
 
-<tr><td>Username:</td><td>
+<input type="text" name="username" maxlength="40" required='required'>
 
-<input type="text" name="username" maxlength="40">
+Password: 
 
-</td></tr>
+<input type="password" name="password" maxlength="50" required='required'>
 
-<tr><td>Password:</td><td>
-
-<input type="password" name="password" maxlength="50">
-
-</td></tr>
-
-<tr><td colspan="2" align="right">
 
 <input type="submit" name="submit" value="Login">
 
@@ -209,24 +70,46 @@ else
 
 </table>
 
-</form>
+</form>	
 
-<?php
+        </div>
+        
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
 
- }
-
- 
-
- ?> 
-		   
-	       </div>
-		   
-		   <div id="footer">
-	       All Rights Reserved 2014
-			
-			
-			</div>
-	 
-	 </div>
-
+  <div class="fbg">
+    <div class="fbg_resize">
+      <div class="col c1">
+        <h2>Image Gallery</h2>
+        
+        <div class="clr"></div>
+      </div>
+      <div class="col c2">
+        <h2>About</h2>
+        
+      </div>
+      <div class="col c3">
+        <h2>Contact</h2>
+        
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer_resize">
+      <p class="lf">&copy; Right Reserved 2014 </p>
+      <ul class="fmenu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Support</a></li>
+       
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contacts</a></li>
+      </ul>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
 </body>
+</html>
